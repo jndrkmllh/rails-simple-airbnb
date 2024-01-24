@@ -7,3 +7,17 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
+puts "Cleaning database..."
+Flat.destroy_all
+
+p "Starting to seed..."
+4.times {
+  p Flat.create!(
+    name: Faker::Marketing.buzzwords,
+    address: Faker::Address.street_address,
+    description: Faker::Lorem.paragraph,
+    price_per_night: rand(19..199),
+    number_of_guests: rand(3..10)
+  )
+}
+p "Seeding done."
